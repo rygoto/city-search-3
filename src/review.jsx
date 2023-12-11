@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { Canvas } from '@react-three/fiber';
 import { Html, OrbitControls } from '@react-three/drei';
+import { useSpring, a } from '@react-spring/three';
 
 const queries = [
     "場所",
@@ -9,6 +10,7 @@ const queries = [
     "雰囲気、空間",
     "営業形態",
     "予約、すぐに入れるか"];
+
 const summaries = [
     "抽出: 外に行列ができる（Ivan Loh）、レストランの内部は巨大（May Bresler Herzog）、場所はとても良い（rudy gelenter）要約: このレストランは人気があり、しばしば外に行列ができる場所にあります。内部は広々としており、多くの客を収容できるようです。",//0
     "抽出: 食べ物はとても美味しい（Ivan Loh）、味は素晴らしい（chirag gahlaut）、カリカリの殻だが少し油っぽい（May Bresler Herzog）、肉の味が強い（rudy gelenter）要約: 食事の味は高く評価されており、特にとんかつの味が素晴らしいとされています。ただし、いくつかのレビューでは油っぽさが指摘されています。",
@@ -18,35 +20,65 @@ const summaries = [
     "抽出: 早めの夕食で3番目の列（Ivan Loh）、かなり早く動く行列（May Bresler Herzog）、午前11時頃に到着し、待ち時間は約5分（Pournami Rajeev) 要約: 行列は存在しますが、比較的速く進むようです。特に早い時間に訪れると、短い待ち時間で入店できる可能性が高いようです。"
 ];
 
-const Box = ({ position, text }) => {
+const Box = ({ position, text, summary, index }) => {
+    const animatedProps = useSpring({ position });
+    const isCloseToCenter = position[0] === 0 && position[1] === 0 && position[2] === 0;
+
+    console.log(`Box ${index}: position =`, position);
+
     return (
-        <mesh position={position}>
+        <a.mesh {...animatedProps}>
             <boxGeometry args={[1, 1, 1]} />
             <meshStandardMaterial color="royalblue" />
-            <Html position={[0, 0.5, 0]} scaleFactor={10}>
-                <div style={{ color: 'white' }}>{text}</div>
+            <Html position={[0, 3, 0]} scaleFactor={10}>
+                <div style={{
+                    color: 'white',
+                    writingMode: 'horizontal-tb' // テキストを横書きにする
+                }}><p>{text}</p></div>
             </Html>
-        </mesh>
+            {isCloseToCenter && (
+                <Html position={[0, -2, 0]} scaleFactor={10}>
+                    <div style={{ color: 'white', writingMode: 'horizontal-tb' }}>
+                        <p>{summary}</p> {/* 追加されたサマリーテキスト */}
+                    </div>
+                </Html>
+            )}
+        </a.mesh>
     );
 };
 
 const App = () => {
-    const radius = 5; // Radius of the circle
+    const radius = 5;
     const angleStep = (2 * Math.PI) / queries.length;
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    const handleButtonClick = () => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % queries.length);
+    };
 
     return (
-        <Canvas style={{ backgroundColor: 'black' }}>
+
+        <Canvas className="canvas" style={{ backgroundColor: 'black' }}>
             <ambientLight intensity={0.5} />
-            <pointLight position={[0, 1, 0]} intensity={8.0} />
+            <pointLight position={[0, 1, -3]} intensity={8.0} />
             {queries.map((query, index) => {
-                const angle = angleStep * index;
+                // IndexをずらしてBoxの位置を計算
+                const adjustedIndex = (index + currentIndex) % queries.length;
+                const angle = angleStep * adjustedIndex;
                 const x = Math.sin(angle) * radius;
                 const y = 0;
-                const z = Math.cos(angle) * radius;
-                return <Box key={index} position={[x, y, z]} text={query} />;
+                const z = Math.cos(angle) * radius - 5;
+
+                return (
+                    <Box key={index} position={[x, y, z]} text={query} summary={summaries[index]} index={index} />
+                );
             })}
+            <Html position={[0, 5, 0]} scaleFactor={10}>
+                <button onClick={handleButtonClick}>次へ</button>
+            </Html>
             <OrbitControls />
         </Canvas>
+
     );
 };
 

@@ -13,18 +13,28 @@
     "@react-spring/three": "^9.7.3",
     "@react-three/drei": "^9.90.0",
     "@react-three/fiber": "^8.15.12",
+    "os-browserify": "^0.3.0",
+    "path-browserify": "^1.0.1",
+    "process": "^0.11.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "three": "^0.159.0"
   },
   "devDependencies": {
+    "@rollup/plugin-inject": "^5.0.5",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
     "@vitejs/plugin-react": "^4.2.0",
+    "babel-plugin-glsl": "^1.0.0",
     "eslint": "^8.53.0",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.4",
     "vite": "^5.0.0"
+  },
+  "babel": {
+    "plugins": [
+      "babel-plugin-glsl/macro"
+    ]
   }
 }
