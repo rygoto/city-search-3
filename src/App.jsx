@@ -524,6 +524,17 @@ function App() {
             <p>{roadName2}</p>
           </div>
         </Html>
+        <Html position={[lastposition.x, 8, lastposition.z]} scaleFactor={10}>
+          <div className="road-info" style={{
+            color: 'white',
+            backgroundColor: 'rgba(0, 0, 0, 0.5)', // 半透明の黒背景
+            padding: '10px', // 内側の余白
+            borderRadius: '5px', // 角の丸み
+            boxShadow: '0 0 10px rgba(0, 0, 0, 0.5)' // 影を追加
+          }}>
+            <p>300m</p>
+          </div>
+        </Html>
       </Canvas>
       {isIframeOpen && (
         <iframe src={iframeUrl} style={{ height: '50vh', width: '100%' }}></iframe>
