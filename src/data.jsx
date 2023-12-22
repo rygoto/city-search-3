@@ -1,16 +1,16 @@
 export const dummyStores = [
-    { name: "ほねーほねーはっぐ", dummyScore: 1, texture: "1.png", distance: 250, priceRange: 5, review: 2.3, url: "http://example.com/ほねーほねーはっぐ" },
-    { name: "カバグミ屋", dummyScore: 5, texture: "2.png", distance: 150, priceRange: 3, review: 3.5, url: "https://qiita.com/sho-19202325/items/b1d56c627856818f4bf0" },
-    { name: "グストー", dummyScore: 10, texture: "3.png", distance: 200, priceRange: 4, review: 2.5, url: "http://example.com/グストー" },
-    { name: "小籠包の事務方", dummyScore: 16, texture: "4.png", distance: 80, priceRange: 2, review: 4.2, url: "http://example.com/小籠包の事務方" },
-    { name: "サードトイレ", dummyScore: 18, texture: "5.png", distance: 350, priceRange: 1, review: 2.2, url: "http://example.com/サードトイレ" },
-    { name: "紛糾民", dummyScore: 20, texture: "6.png", distance: 250, priceRange: 5, review: 0.3, url: "http://example.com/紛糾民" },
-    { name: "シックステン", dummyScore: 22, texture: "7.png", distance: 150, priceRange: 3, review: 3.8, url: "https://zenn.dev/jun0723/articles/188834ae228d8f" },
-    { name: "広ゆ", dummyScore: 25, texture: "8.png", distance: 200, priceRange: 4, review: 4.5, url: "http://example.com/広ゆ" },
-    { name: "エイトトゥエルブ", dummyScore: 26, texture: "9.png", distance: 80, priceRange: 2, review: 2.2, url: "http://example.com/エイトボール" },
-    { name: "山田空地", dummyScore: 27, texture: "10.png", distance: 350, priceRange: 3, review: 3.2, url: "http://example.com/山田空地" },
-    { name: "テンプラ", dummyScore: 27, texture: "11.png", distance: 250, priceRange: 4, review: 2.9, url: "http://example.com/テンプラ" },
-    { name: "ススコ", dummyScore: 29, texture: "12.png", distance: 150, priceRange: 2, review: 3.2, url: "http://example.com/スココ" },
+    { name: "マッケ", dummyScore: 1, texture: "1.png", distance: 250, priceRange: 5, review: 2.3, url: "http://example.com/マッケ", time: "11:00~23:00", information: "まずいよ" },
+    { name: "カバグミ屋", dummyScore: 5, texture: "2.png", distance: 150, priceRange: 3, review: 3.5, url: "https://qiita.com/sho-19202325/items/b1d56c627856818f4bf0", time: "9:00~20:00", information: "まずいよ" },
+    { name: "グストー", dummyScore: 10, texture: "3.png", distance: 200, priceRange: 4, review: 2.5, url: "http://example.com/グストー", time: "10:00~25:00", information: "おいしいよ" },
+    { name: "小籠包の事務方", dummyScore: 16, texture: "4.png", distance: 80, priceRange: 2, review: 4.2, url: "http://example.com/小籠包の事務方", time: "12:00~22:00", information: "おいしいよ" },
+    { name: "サードトイレ", dummyScore: 18, texture: "5.png", distance: 350, priceRange: 1, review: 2.2, url: "http://example.com/サードトイレ", time: "13:00~20:00", information: "おいしいよ" },
+    { name: "紛糾民", dummyScore: 20, texture: "6.png", distance: 250, priceRange: 5, review: 0.3, url: "http://example.com/紛糾民", time: "15:00~21:00", information: "おいしいよ" },
+    { name: "シックステン", dummyScore: 22, texture: "7.png", distance: 150, priceRange: 3, review: 3.8, url: "https://zenn.dev/jun0723/articles/188834ae228d8f", time: "8:00~22:30", information: "おいしいよ" },
+    { name: "広ゆ", dummyScore: 25, texture: "8.png", distance: 200, priceRange: 4, review: 4.5, url: "http://example.com/広ゆ", time: "11:00~24:00", information: "おいしいよ" },
+    { name: "エイトトゥエルブ", dummyScore: 26, texture: "9.png", distance: 80, priceRange: 2, review: 2.2, url: "http://example.com/エイトボール", time: "11:00~26:00", information: "おいしいよ" },
+    { name: "山田空地", dummyScore: 27, texture: "10.png", distance: 350, priceRange: 3, review: 3.2, url: "http://example.com/山田空地", time: "12:00~22:00", information: "普通" },
+    { name: "テンプラ", dummyScore: 27, texture: "11.png", distance: 250, priceRange: 4, review: 2.9, url: "http://example.com/テンプラ", time: "13:30~21:30", information: "おいしいよ" },
+    { name: "ススコ", dummyScore: 29, texture: "12.png", distance: 150, priceRange: 2, review: 3.2, url: "http://example.com/スココ", time: "16:00~22:00", information: "中華料理屋" },
     //distanceは1000mが最大で計算
 ]
 

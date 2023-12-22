@@ -4,7 +4,7 @@ import { View, OrbitControls, Html, useGLTF } from '@react-three/drei';
 import { useNavigate } from 'react-router-dom';
 import * as THREE from 'three';
 
-const PanoramaSphere = ({ imagePath, position }) => {
+const PanoramaSphere = ({ imagePath, position, cityName }) => {
     const meshRef = useRef();
     const navigate = useNavigate();
     const [scale, setScale] = useState(1);
@@ -24,11 +24,14 @@ const PanoramaSphere = ({ imagePath, position }) => {
     // マウスホイールでのズーム調整
     const handleWheelZoom = (event) => {
         const zoomSpeed = 0.01; // ズームの速度調整用
-        const newScale = Math.max(0.5, Math.min(7, scale - event.deltaY * zoomSpeed));
+        const newScale = Math.max(1, Math.min(7, scale - event.deltaY * zoomSpeed));
         setScale(newScale);
         handleScaleChange(newScale);
         console.log(newScale);
     };
+
+    const htmlPosition = [position[0], position[1] + 1.2, position[2]];
+
 
     // マウスドラッグやタッチムーブでのズーム調整
     const lastPositionRef = useRef({ x: 0, y: 0 });
@@ -73,9 +76,9 @@ const PanoramaSphere = ({ imagePath, position }) => {
                 <sphereGeometry args={[0.8, 32, 32]} />
                 <meshBasicMaterial map={texture} side={THREE.BackSide} />
             </mesh>
-            <Html position={[0, 1, 0]}>
+            <Html position={htmlPosition}>
                 <div style={{ color: 'white', fontSize: '20px' }}>
-                    羊華町
+                    {cityName}
                 </div>
             </Html>
         </>
@@ -83,15 +86,16 @@ const PanoramaSphere = ({ imagePath, position }) => {
 };
 
 
-const CitySphere = () => {
+const CitySphere2 = () => {
     return (
         <Canvas style={{ backgroundColor: 'black' }}>
             <ambientLight />
-            <PanoramaSphere imagePath="/images.jpg" position={[0, 0, 0]} />
-            <PanoramaSphere imagePath="/images.jpg" position={[2.5, 2, 0]} />
-            <PanoramaSphere imagePath="/images.jpg" position={[-2.5, 2, 0]} />
+            <PanoramaSphere imagePath="./public/city1.png" position={[0, 0, 0]} cityName="羊華町" />
+            <PanoramaSphere imagePath="./public/city2.png" position={[2.5, 2, 0]} cityName="蓮花市" />
+            <PanoramaSphere imagePath="./public/city3.png" position={[-2.5, 2, 0]} cityName="桜井村" />
+            <OrbitControls />
         </Canvas>
     );
 };
 
-export default CitySphere;
+export default CitySphere2;

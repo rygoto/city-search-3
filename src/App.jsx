@@ -2,8 +2,9 @@ import React, { useRef, useState, useEffect, useMemo } from 'react';
 import { Canvas, useLoader, useFrame, extend, useThree } from '@react-three/fiber';
 import { View, OrbitControls, Html, useGLTF } from '@react-three/drei';
 import { useSpring, a } from '@react-spring/three';
+import { useNavigate } from 'react-router-dom';
 import { TextureLoader, Mesh } from 'three';
-import { dummyStores, predeterminedPositions, decoderouteJinguToGaien, decoderouteJinguToYotsuya } from './data';
+import { dummyStores, predeterminedPositions, decoderouteJinguToGaien, decoderouteJinguToYotsuya } from '../src/data.jsx';
 import * as THREE from "three";
 
 function Sphere({ onTotalRotationChange }) {
@@ -95,6 +96,7 @@ function Sphere({ onTotalRotationChange }) {
   });
 
   const texture = useLoader(TextureLoader, '/Earth.jpg');
+  //const texture = useLoader(TextureLoader, '/images.jpg');
 
   return (
     <mesh position={[0, -2.3, 0]} renderOrder={1}
@@ -102,7 +104,7 @@ function Sphere({ onTotalRotationChange }) {
       onPointerDown={handleMouseDown}
       onTouchStart={handleTouchStart}>
       <sphereGeometry args={[0.8, 32, 32]} />
-      <meshStandardMaterial map={texture} />
+      <meshStandardMaterial map={texture} side={THREE.BackSide} />
     </mesh>
   );
 }
@@ -145,6 +147,14 @@ function Box({ position, animatedPosition, store, onOpenUrl }) {
             <p>{store.name}</p>
           </div>
         </Html>
+      )}
+      {showHtml && (
+        <Html position={[-0.5, -0.8, 0]}>
+          <div className="store-info">
+            <p>{store.time}</p>
+          </div>
+        </Html>
+
       )}
     </a.mesh>
   );
@@ -295,7 +305,33 @@ function Road({ points }) {
   );
 }
 
-function App() {
+function BG() {
+  const texture = useLoader(TextureLoader, './public/city1.png');
+  //const texture = useLoader(TextureLoader, './public/city2.png');
+  //const texture = useLoader(TextureLoader, './public/city3.png');
+  const meshRef = useRef()
+  // テクスチャ設定
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.repeat.x = -1;
+
+  useFrame(() => {
+    meshRef.current.rotation.y += 0.001;
+  });
+  const scale = 60;
+
+  return (
+    <mesh
+      ref={meshRef}
+      scale={[scale, scale, scale]}
+      position={[0, 0, 0]}
+    >
+      <sphereGeometry args={[0.8, 32, 32]} />
+      <meshStandardMaterial map={texture} side={THREE.BackSide} />
+    </mesh>
+  );
+}
+
+function Other() {
   const [location, setLocation] = useState('');
   const [isIframeOpen, setIsIframeOpen] = useState(false);
   const [iframeUrl, setIframeUrl] = useState('');
@@ -463,6 +499,15 @@ function App() {
   console.log("road402point" + road402point);
   console.log(roadName2);
 
+  const navigate = useNavigate();
+  const handleBackClick = () => {
+    navigate('/');
+  };
+
+  const handleNextClick = () => {
+    navigate('/review');
+  };
+
   return (
     <div style={{ width: '100%', height: '100vh' }}>
       <form onSubmit={handleSubmit}>
@@ -482,6 +527,7 @@ function App() {
       </div>
 
       <Canvas style={{ backgroundColor: 'black' }}>
+        <BG />
         <ambientLight />
         <pointLight position={[0, 0, 0]} intensity={2.0} />
         <pointLight position={[0, 1, 1]} intensity={5.0} />
@@ -535,6 +581,35 @@ function App() {
             <p>300m</p>
           </div>
         </Html>
+        <Html position={[-5, 3.7, 0]} scaleFactor={10}>
+          <button onClick={handleBackClick} style={{
+            padding: '10px',
+            fontSize: '16px',
+            cursor: 'pointer',
+            backgroundColor: '#007bff',
+            color: 'white',
+            border: 'none',
+            borderRadius: '5px',
+            boxShadow: '0 2px 2px rgba(0, 0, 0, 0.3)'
+          }}>
+            戻る
+          </button>
+        </Html>
+        <Html position={[5, 3.7, 0]} scaleFactor={10}>
+          <button onClick={handleNextClick} style={{
+            padding: '10px',
+            fontSize: '16px',
+            cursor: 'pointer',
+            backgroundColor: '#007bff',
+            color: 'white',
+            border: 'none',
+            borderRadius: '5px',
+            boxShadow: '0 2px 2px rgba(0, 0, 0, 0.3)'
+          }}>
+            レビュー
+          </button>
+        </Html>
+        <OrbitControls />
       </Canvas>
       {isIframeOpen && (
         <iframe src={iframeUrl} style={{ height: '50vh', width: '100%' }}></iframe>
@@ -544,4 +619,4 @@ function App() {
   );
 }
 
-export default App;
+export default Other;

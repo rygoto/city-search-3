@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Html, OrbitControls } from '@react-three/drei';
 import { useSpring, a } from '@react-spring/three';
+import { useNavigate } from 'react-router-dom';
 
 const queries = [
     "場所",
@@ -47,7 +48,7 @@ const Box = ({ position, text, summary, index }) => {
     );
 };
 
-const App = () => {
+const ReviewApp = () => {
     const radius = 5;
     const angleStep = (2 * Math.PI) / queries.length;
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -55,6 +56,13 @@ const App = () => {
     const handleButtonClick = () => {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % queries.length);
     };
+
+    const navigate = useNavigate();
+    const handleBackClick = () => {
+        navigate('/other');
+    };
+
+
 
     return (
 
@@ -76,10 +84,24 @@ const App = () => {
             <Html position={[0, 5, 0]} scaleFactor={10}>
                 <button onClick={handleButtonClick}>次へ</button>
             </Html>
+            <Html position={[-5, 3.7, 0]} scaleFactor={10}>
+                <button onClick={handleBackClick} style={{
+                    padding: '10px',
+                    fontSize: '16px',
+                    cursor: 'pointer',
+                    backgroundColor: '#007bff',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '5px',
+                    boxShadow: '0 2px 2px rgba(0, 0, 0, 0.3)'
+                }}>
+                    戻る
+                </button>
+            </Html>
             <OrbitControls />
         </Canvas>
 
     );
 };
 
-export default App;
+export default ReviewApp;
