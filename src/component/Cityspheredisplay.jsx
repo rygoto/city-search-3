@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Canvas, useFrame, useLoader, useThree, extend } from '@react-three/fiber';
 import { Html, OrbitControls } from '@react-three/drei';
-import { useSpring } from '@react-spring/three';
 import { useNavigate } from 'react-router-dom';
 import * as THREE from 'three';
 import { OrbitControls as OrbitControlsImpl } from 'three/examples/jsm/controls/OrbitControls';
@@ -76,9 +75,9 @@ const CitySphere = () => {
     return (
         <Canvas style={{ backgroundColor: 'black' }}>
             <ambientLight />
-            <PanoramaSphere imagePath="./public/city1.png" initialPosition={[0, 0, 0]} cityName="瓜が原" url="/city1" setTarget={setTarget} />
-            <PanoramaSphere imagePath="./public/city2.png" initialPosition={[2.5, 2, 0]} cityName="共瑛" url="/city2" setTarget={setTarget} />
-            <PanoramaSphere imagePath="./public/city3.png" initialPosition={[-2.5, 2, 0]} cityName="何里町" url="/city3" setTarget={setTarget} />
+            <PanoramaSphere imagePath="./public/city1.png" initialPosition={[0, 0, 0]} cityName="表参道" url="/city1" setTarget={setTarget} />
+            <PanoramaSphere imagePath="./public/city2.png" initialPosition={[2.5, 2, 0]} cityName="渋谷" url="/city2" setTarget={setTarget} />
+            <PanoramaSphere imagePath="./public/city3.png" initialPosition={[-2.5, 2, 0]} cityName="恵比寿 " url="/city3" setTarget={setTarget} />
             <AnimatedCamera target={targetPosition} />
         </Canvas>
     );

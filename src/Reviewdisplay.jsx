@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect, useMemo } from 'react';
 import { Canvas, useLoader, useFrame, extend, useThree } from '@react-three/fiber';
 import { View, OrbitControls, Html, useGLTF } from '@react-three/drei';
 import { useSpring, a } from '@react-spring/three';
-import { useNavigate } from 'react-routernpm-dom';
+import { useNavigate } from 'react-router-dom';
 import { TextureLoader, Mesh } from 'three';
 import { dummyStores, predeterminedPositions, decoderouteJinguToGaien, decoderouteJinguToYotsuya } from './data';
 import * as THREE from "three";

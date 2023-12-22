@@ -59,7 +59,7 @@ const ReviewApp = () => {
 
     const navigate = useNavigate();
     const handleBackClick = () => {
-        navigate('/other');
+        navigate('/city1');
     };
 
 
