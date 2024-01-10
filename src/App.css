@@ -74,3 +74,17 @@
   transform-origin: left;
   white-space: nowrap;
 }
+
+.store-panel {
+  background-color: white;
+  /* 白い背景 */
+  border: 1px solid black;
+  /* 枠線 */
+  padding: 10px;
+  /* 内側の余白 */
+  color: black;
+  /* テキストの色 */
+  font-family: Arial, sans-serif;
+  /* フォントスタイル */
+  /* その他必要なスタイル */
+}

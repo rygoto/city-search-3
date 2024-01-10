@@ -268,6 +268,7 @@ function Other() {
             レビュー
           </button>
         </Html>
+        <OrbitControls />
       </Canvas>
       {isIframeOpen && (
         <iframe src={iframeUrl} style={{ height: '50vh', width: '100%' }}></iframe>

@@ -13,13 +13,17 @@
     "@react-spring/three": "^9.7.3",
     "@react-three/drei": "^9.90.0",
     "@react-three/fiber": "^8.15.12",
+    "glslify": "^7.1.1",
     "os-browserify": "^0.3.0",
     "path-browserify": "^1.0.1",
     "process": "^0.11.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.20.1",
-    "three": "^0.159.0"
+    "react-spring": "^9.7.3",
+    "three": "^0.159.0",
+    "vite-plugin-glsl": "^1.2.1",
+    "zustand": "^4.4.7"
   },
   "devDependencies": {
     "@rollup/plugin-inject": "^5.0.5",

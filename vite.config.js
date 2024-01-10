@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import inject from '@rollup/plugin-inject';
+import glsl from 'vite-plugin-glsl';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -9,6 +10,8 @@ export default defineConfig({
     inject({
       process: 'process/browser',
     }),
+    glsl(),
+
     // 他のプラグインがあればここに追加
   ],
   resolve: {
